@@ -1,0 +1,5115 @@
+{
+	"info": {
+		"_postman_id": "61dcb265-5f8d-4ea3-ba5e-0cc6b110facc",
+		"name": "REC_TOOL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10320375"
+	},
+	"item": [
+		{
+			"name": "9001",
+			"item": [
+				{
+					"name": "Auth_Controller",
+					"item": [
+						{
+							"name": "Register",
+							"item": [
+								{
+									"name": "Email_Test",
+									"item": [
+										{
+											"name": "HappyPath",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 201\", function () {",
+															"    pm.response.to.have.status(201);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"{{$randomFirstName}}@test.com\",\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/{{$randomFirstName}}\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Without@",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456\",\r\n  \"email\": \"duyguzumratest.com\",\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/{{$randomFirstName}}\",\r\n  \"password\": \"Test123456\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "WithoutBlankAfter@",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"duyguzumra@ \",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"sa\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/duygum\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "WithBlankBefore@",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});",
+															"pm.test(\"Response time is less than 100ms\", function () {",
+															"    pm.expect(pm.response.responseTime).to.be.below(100);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \" @test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"sa\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/duygum\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "OnlyWith@",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"@\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"sa\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/duygum\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "OnlyWith@ WithBlanks",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"pm.test(\"Response time is less than 100ms\", function () {",
+															"    pm.expect(pm.response.responseTime).to.be.below(100);",
+															"});",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"   @   \",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"sa\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/duygum\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "OnlyWith@ WithBlanks Copy",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});",
+															"pm.test(\"Response time is less than 100ms\", function () {",
+															"    pm.expect(pm.response.responseTime).to.be.below(100);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"   @   \",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"sa\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/duygum\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "WithEmoji",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});",
+															"pm.test(\"Body matches string\", function () {",
+															"    pm.expect(pm.response.text()).to.include(\"Please enter a valid email address\");",
+															"});",
+															"pm.test(\"Response time is less than 100ms\", function () {",
+															"    pm.expect(pm.response.responseTime).to.be.below(100);",
+															"});",
+															""
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"😀@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"sa\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/duygum\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "WithEmojiAndLetters",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"😀Nisa@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"sa\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/duygum\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "With@@",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"aise@test@com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"sa\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/duygum\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "MoreThanMaxCh",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"aiseghfrdesdfrgthyujkiolpkjmnhbgvfcdsawertyhujkiol@test@com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"sa\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/duygum\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "WithSpecialCh",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"{}ayla@test@com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"sa\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/duygum\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "FirstName_LastName",
+									"item": [
+										{
+											"name": "HappyPath",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"ayla34@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"ceb\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "LastNameWithNumbers",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\":\"Test123456!\",\r\n  \"email\": \"ayla34@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "BlankLastname",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Zumra12345!\",\r\n  \"email\": \"ayla34@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\":\"\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"Zumra12345!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "BlankFirstName",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"ayla34@test.com\",\r\n  \"firstName\": ,\r\n  \"gdpr\": true,\r\n  \"lastName\": \"ceb\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "WithBoolean",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"aylaa3454@test.com\",\r\n  \"firstName\":false,\r\n  \"gdpr\": true,\r\n  \"lastName\": \"ceb\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "LastNameWithNumbers Copy",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"ayla34@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"ceb123\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "BUGHappyPathSurname",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test123456!\",\r\n  \"email\": \"aylaa3459@test.com\",\r\n  \"firstName\":\"ayla\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"ceb\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://54.194.180.243:9001/api/auth/register",
+													"protocol": "http",
+													"host": [
+														"54",
+														"194",
+														"180",
+														"243"
+													],
+													"port": "9001",
+													"path": [
+														"api",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Password_Test",
+									"item": [
+										{
+											"name": "HappyPath",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"//var jsonData = pm.response.json();",
+															"//pm.environment.set(\"userEmail\", jsonData.data.email);",
+															"",
+															"//pm.environment.set(\"token\", jsonData.data.token);",
+															"",
+															"//pm.environment.set(\"firstName\", jsonData.data.firstName);"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\":\"Test123456!\",\r\n  \"email\":\"{{$randomFirstName}}@test.com\",\r\n  \"firstName\":\"{{$randomFirstName}}\",\r\n  \"gdpr\": true,\r\n  \"lastName\":\"ceb\",\r\n  \"linkedIn\":\"https://www.linkedin.com/in/{{$randomFirstName}}\",\r\n  \"password\":\"Test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "BlankPassword",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"\",\r\n  \"email\": \"ayla34@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"ceb\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "PurelyBlankPassword",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": ,\r\n  \"email\": \"ayla34@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"ceb\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "LowerLetters",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"test123456!\",\r\n  \"email\": \"ayla34@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"ceb\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"test123456!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "NoNumbers",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Testbiriki!\",\r\n  \"email\": \"ayla34@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"ceb\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"Testbiriki!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "LessThanEight",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"confirmPassword\": \"Test12!\",\r\n  \"email\": \"ayla34@test.com\",\r\n  \"firstName\": \"zumra\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"ceb\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/ayla\",\r\n  \"password\": \"Test12!\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "LinkedInTest",
+									"item": [
+										{
+											"name": "HappyPath",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"confirmPassword\": \"Test123456!\",\n  \"email\": \"duygucdsdse@test.com\",\n  \"firstName\": \"dudygu\",\n  \"gdpr\": true,\n  \"lastName\": \"ceb\",\n  \"linkedIn\": \"https://www.linkedin.com/in/duyguddd\",\n  \"password\": \"Test123456!\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "BlankLink",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"confirmPassword\": \"{{CommonPassword}}\",\n  \"email\": \"{{$randomFirstName}}@test.com\",\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"gdpr\": true,\n  \"lastName\": \"{{$randomLastName}}\",\n  \"linkedIn\": \"\",\n  \"password\": \"{{CommonPassword}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Without_Any_char_after_slash",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"confirmPassword\": \"{{CommonPassword}}\",\n  \"email\": \"{{$randomFirstName}}@test.com\",\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"gdpr\": true,\n  \"lastName\": \"{{$randomLastName}}\",\n  \"linkedIn\": \"{{linkedin}}\",\n  \"password\": \"{{CommonPassword}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "BUG_one_char_after_slash",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"pm.test(\"Status code is 400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});"
+														]
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"confirmPassword\": \"{{CommonPassword}}\",\n  \"email\": \"{{$randomFirstName}}@test.com\",\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"gdpr\": true,\n  \"lastName\": \"{{$randomLastName}}\",\n  \"linkedIn\": \"{{linkedin}}o\",\n  \"password\": \"{{CommonPassword}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "With_integer_after_slash",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"confirmPassword\": \"{{CommonPassword}}\",\n  \"email\": \"{{$randomFirstName}}@test.com\",\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"gdpr\": true,\n  \"lastName\": \"{{$randomLastName}}\",\n  \"linkedIn\": \"{{linkedin}}6543124\",\n  \"password\": \"{{CommonPassword}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/register",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "LogInTest",
+									"item": [
+										{
+											"name": "Happy_path",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"email\": \"{{$randomFirstName}}@gmail.com\",\n  \"password\": \"Test123456!\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/login",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"login"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "With_blank_after_@",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"email\": \"{{$randomFirstName}}@ gmail.com\",\n  \"password\": \"Test123456!\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BaseURI}}/auth/login",
+													"host": [
+														"{{BaseURI}}"
+													],
+													"path": [
+														"auth",
+														"login"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"userToken\", jsonData.data.token);",
+											"pm.environment.set(\"userId\", jsonData.data.id);",
+											"pm.environment.set(\"userEmail\", jsonData.data.email);",
+											"pm.environment.set(\"firstName\", jsonData.data.firstName);",
+											"",
+											"",
+											""
+										]
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.environment.set(\"name\", \"{{$randomFirstName}}\");",
+											"pm.environment.set(\"name\",pm.variables.replaceIn(\"{{$randomFirstName}}\", \"{{name}}\"));"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"confirmPassword\": \"{{CommonPassword}}\",\r\n  \"email\": \"{{name}}@test.com\",\r\n  \"firstName\": \"{{name}}\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"linkedIn\": \"{{linkedin}}{{name}}\",\r\n  \"password\": \"{{CommonPassword}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.194.180.243:9001/api/auth/register",
+									"protocol": "http",
+									"host": [
+										"54",
+										"194",
+										"180",
+										"243"
+									],
+									"port": "9001",
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RegisterByRandom",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"confirmPassword\": \"{{CommonPassword}}\",\n  \"email\": \"{{$randomFirstName}}@test.com\",\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"gdpr\": true,\n  \"lastName\": \"{{$randomLastName}}\",\n  \"linkedIn\": \"{{linkedin}}{{$randomFirstName}}\",\n  \"password\": \"{{CommonPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURI}}/auth/register",
+									"host": [
+										"{{BaseURI}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LogIn",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"//var jsonData = pm.response.json();",
+											"//pm.environment.set(\"candidateToken\", jsonData.data.candidateToken);",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{candidateToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"{{candidateEmail}}\",\r\n  \"password\": \"{{CommonPassword}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.194.180.243:9001/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"54",
+										"194",
+										"180",
+										"243"
+									],
+									"port": "9001",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "9002",
+			"item": [
+				{
+					"name": "candidate-controller",
+					"item": [
+						{
+							"name": "Personal Info",
+							"item": [
+								{
+									"name": "Personal Info",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"cityId\": 2,\n  \"countryPhoneCode\": \"44\",\n  \"firstName\": \"Emreas\",\n  \"lastName\": \"Asssdsad\",\n  \"linkedIn\": \"https://linkedin.com/in/easdaddd\",\n  \"mobile\": \"072537213\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/personnelInfo",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"personnelInfo"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PhoneNumberEmoji",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cityId\": 2,\r\n  \"countryPhoneCode\": \"+44\",\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Bayram\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/aBayram\",\r\n  \"mobile\": \"🤪\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/personnelInfo",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"personnelInfo"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PhoneNumberEmpty",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cityId\": 2,\r\n  \"countryPhoneCode\": \"+44\",\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Bayram\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/aBayram\",\r\n  \"mobile\": \"\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/personnelInfo",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"personnelInfo"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PhoneNumberWith_15_Number",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cityId\": 2,\r\n  \"countryPhoneCode\": \"+44\",\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Bayram\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/aBayram\",\r\n  \"mobile\": \"123456789123456\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/personnelInfo",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"personnelInfo"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PhoneNumberWithEleven",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});\r",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cityId\": 2,\r\n  \"countryPhoneCode\": \"+44\",\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Bayram\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/aBayram\",\r\n  \"mobile\": \"12345123456\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/personnelInfo",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"personnelInfo"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PhoneNumberWithTreeDigits",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cityId\": 2,\r\n  \"countryPhoneCode\": \"+44\",\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Bayram\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/aBayram\",\r\n  \"mobile\": \"123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/personnelInfo",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"personnelInfo"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PhoneCodeWithLetters",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cityId\": 2,\r\n  \"countryPhoneCode\": \"ab\",\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Bayram\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/aBayram\",\r\n  \"mobile\": \"1234512345\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/personnelInfo",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"personnelInfo"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PhoneCodeEmpty",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cityId\": 2,\r\n  \"countryPhoneCode\": 0,\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Bayram\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/aBayram\",\r\n  \"mobile\": \"1234512345\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/personnelInfo",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"personnelInfo"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PhoneCodeAsInteger",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cityId\": 2,\r\n  \"countryPhoneCode\": 44,\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Bayram\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/aBayram\",\r\n  \"mobile\": \"1234512345\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/personnelInfo",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"personnelInfo"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "WithoutCityId",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cityId\": \"\",\r\n  \"countryPhoneCode\": \"+44\",\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Bayram\",\r\n  \"linkedIn\": \"https://www.linkedin.com/in/aBayram\",\r\n  \"mobile\": \"1234512345\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/personnelInfo",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"personnelInfo"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Position",
+							"item": [
+								{
+									"name": "Positions_Happy_Path",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"positions\": [\n    {\n      \n      \"positionId\": 108\n    \n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/positions",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"positions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DDT(Data Driven Test)_HappyPath",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {",
+													"    pm.response.to.have.status(204);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"positions\": [\n    {\n      \"positionId\": {{positionId}}\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/positions",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"positions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "experienceID_outOfBoundry",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 406\", function () {",
+													"    pm.response.to.have.status(406);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"positions\": [\n    {\n      \"experienceYearsId\": 13,\n      \"positionId\": 110\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/positions",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"positions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PositionID_outOfBoundry",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 406\", function () {",
+													"    pm.response.to.have.status(406);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"positions\": [\n    {\n      \"experienceYearsId\": 36,\n      \"positionId\": 215\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/positions",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"positions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Both_PositionID_and_ExperienceYearsId_outOfBoundry",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 406\", function () {",
+													"    pm.response.to.have.status(406);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"positions\": [\n    {\n      \"experienceYearsId\": 98,\n      \"positionId\": 235\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/positions",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"positions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "(?)Two_Same_PositionId_Given-experiences_different",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 406\", function () {",
+													"    pm.response.to.have.status(406);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"positions\": [\n    {\n      \"experienceYearsId\": 36,\n      \"positionId\": 81\n    },\n    {\n      \"experienceYearsId\": 39,\n      \"positionId\": 81\n    }\n    \n  ]\n  \n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/positions",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"positions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "(?)Two_Same_body_PositionId_Given_same_data",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 406\", function () {",
+													"    pm.response.to.have.status(406);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"positions\": [\n    {\n      \"experienceYearsId\": 36,\n      \"positionId\": 81\n    }\n  ],\n\"positions\": [\n    {\n      \"experienceYearsId\": 36,\n      \"positionId\": 81\n    }\n  ]\n  \n  \n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/positions",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"positions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Admin{candidateId}",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text"
+											},
+											{
+												"key": "candidateId",
+												"value": "93",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"positions\": [\n    {\n      \"experienceYearsId\": 37,\n      \"positionId\": 90\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/positions/admin/{{candidateId}}",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"positions",
+												"admin",
+												"{{candidateId}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Skills",
+							"item": [
+								{
+									"name": "HappyPath",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {",
+													"    pm.response.to.have.status(204);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"skills\": [\n    {\n      \"experienceYearsId\": 36,\n      \"toolId\": 136\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/skills",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"skills"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "ToolId_out_of_boundary",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 406\", function () {",
+													"    pm.response.to.have.status(406);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"skills\": [\n    {\n      \"experienceYearsId\": 36,\n      \"toolId\": 60\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/skills",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"skills"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "experienceYearsID_out_of_boundary",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 406\", function () {",
+													"    pm.response.to.have.status(406);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"skills\": [\n    {\n      \"experienceYearsId\": 23,\n      \"toolId\": 140\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/skills",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"skills"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Both_experienceYearsID_and_ToolID_out_of_boundary",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 406\", function () {",
+													"    pm.response.to.have.status(406);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"skills\": [\n    {\n      \"experienceYearsId\": 9,\n      \"toolId\": 10\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/skills",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"skills"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "(?)Two_same_body_ONe_is_Diffrent_experience",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 406\", function () {",
+													"    pm.response.to.have.status(406);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"skills\": [\n    {\n      \"experienceYearsId\": 36,\n      \"toolId\": 146\n    }\n  ],\n  \"skills\": [\n    {\n      \"experienceYearsId\": 35,\n      \"toolId\": 146\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/skills",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"skills"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "(?)Two_same_body_ONe_is_Diffrent_ToolID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 406\", function () {",
+													"    pm.response.to.have.status(406);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"skills\": [\n    {\n      \"experienceYearsId\": 36,\n      \"toolId\": 146\n    },\n    {\n      \"experienceYearsId\": 36,\n      \"toolId\": 147\n    }\n  ],\n  \"skills\": [\n    {\n      \"experienceYearsId\": 36,\n      \"toolId\": 148\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/skills",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"skills"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Candiate User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{candidateToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURLRoles}}/candidate/user",
+									"host": [
+										"{{BaseURLRoles}}"
+									],
+									"path": [
+										"candidate",
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "candidate_file_controller",
+					"item": [
+						{
+							"name": "cv-upload",
+							"item": [
+								{
+									"name": "upload_cv_happyPath",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {",
+													"    pm.response.to.have.status(204);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/eng1-01.pdf"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cv-upload",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cv-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_cv_doc_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/gennav-ŞEKİL FORMÜLLER.doc"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cv-upload",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cv-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_cv_docx_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {",
+													"    pm.response.to.have.status(204);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/Management Essay en-GB.docx"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cv-upload",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cv-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_cv_jpg_document Copy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/pexels-hemanth-nirujogi-3189980.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cv-upload",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cv-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_cv_jpeg_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/moon&plane.jpeg"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cv-upload",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cv-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_cv_png_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/09.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cv-upload",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cv-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_cv_zip_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/logioptionsplus_installer.zip"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cv-upload",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cv-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_cv_txt_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Desktop/SDET EU8/Udemy Selenium/Info.txt"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cv-upload",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cv-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cv-download",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cv-download",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cv-download"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cv-delete",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {",
+													"    pm.response.to.have.status(204);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cv-delete",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cv-delete"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "cover-upload",
+							"item": [
+								{
+									"name": "upload_coverLetter_pdf_HappyPath",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {",
+													"    pm.response.to.have.status(204);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/eng1-01.pdf"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/file/cover-upload",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"file",
+												"cover-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_coverLetter_doc_document_HappyPath",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {",
+													"    pm.response.to.have.status(204);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/iCloud Drive (Archive) - 1/Desktop/ATPL/1. OTURUM/AGK/agk v3 yeni.doc"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/file/cover-upload",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"file",
+												"cover-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_coverLetter_docx_document_HappyPath",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {",
+													"    pm.response.to.have.status(204);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/Management Essay en-GB.docx"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cover-upload",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cover-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_coverLetter_jpg_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/pexels-hemanth-nirujogi-3189980.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/file/cover-upload",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"file",
+												"cover-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_coverLetter_jpeg_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/moon&plane.jpeg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/file/cover-upload",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"file",
+												"cover-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_coverLetter_zip_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/logioptionsplus_installer.zip"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/file/cover-upload",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"file",
+												"cover-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_coverLetter_png_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Downloads/09.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/file/cover-upload",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"file",
+												"cover-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload_coverLetter_txt_document",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{Bearer}}{{candidateToken}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"type": "file",
+													"src": "/Users/Emre/Desktop/SDET EU8/Udemy Selenium/Info.txt"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{BaseURLRoles}}/candidate/file/cover-upload",
+											"host": [
+												"{{BaseURLRoles}}"
+											],
+											"path": [
+												"candidate",
+												"file",
+												"cover-upload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cover-download",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cover-download",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cover-download"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cover-delete",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {",
+													"    pm.response.to.have.status(204);",
+													"});"
+												]
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{candidateToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://54.194.180.243:9002/api/candidate/file/cover-delete",
+											"protocol": "http",
+											"host": [
+												"54",
+												"194",
+												"180",
+												"243"
+											],
+											"port": "9002",
+											"path": [
+												"api",
+												"candidate",
+												"file",
+												"cover-delete"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "referral-upload",
+							"item": []
+						}
+					]
+				},
+				{
+					"name": "look-up controller",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{candidateToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURLRoles}}/lookUp/getAll",
+									"host": [
+										"{{BaseURLRoles}}"
+									],
+									"path": [
+										"lookUp",
+										"getAll"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "talrise-user-controller",
+					"item": [
+						{
+							"name": "Candidate Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"candidateToken\", jsonData.data.token);",
+											"pm.environment.set(\"candidateEmail\", jsonData.data.email);",
+											"pm.environment.set(\"candidateId\", jsonData.data.id);",
+											"",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{userToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}/user/candidate/create",
+									"host": [
+										"{{BaseURLRoles}}"
+									],
+									"path": [
+										"user",
+										"candidate",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Client Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"clientToken\", jsonData.data.token);",
+											"pm.environment.set(\"clientEmail\", jsonData.data.email);",
+											"pm.environment.set(\"clientId\", jsonData.data.id);"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Bearer}}{{UserToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}/user/client/create",
+									"host": [
+										"{{BaseURLRoles}}"
+									],
+									"path": [
+										"user",
+										"client",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Preferences",
+					"item": [
+						{
+							"name": "happy_path",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Bearer}}{{candidateToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 18,\r\n  \"currencyId\": 10,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 2,\r\n      \"workPlaces\": [\r\n        24\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}/candidate/preferences",
+									"host": [
+										"{{BaseURLRoles}}"
+									],
+									"path": [
+										"candidate",
+										"preferences"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_null_currencyId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Bearer}}{{candidateToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": null,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_inValid_currencyId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 406\", function () {\r",
+											"    pm.response.to.have.status(406);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 2,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_inValidString_currencyId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": \"abc\",\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_boolean_currencyInfoId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": true,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_inValidString_minExpectedAmount Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": \"abc\",\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_inValidIntegerMax_minExpectedAmount Copy 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 500000000000000000000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_boolean_minExpectedAmount",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": true,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_inValidLocations_cityId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 4,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BUGmesaj_preference_boolean_locations_cityId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": true,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_null_salaryPreferenceId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": null,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_inValid_salaryPreferenceId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 406\", function () {\r",
+											"    pm.response.to.have.status(406);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 105,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_String_salaryPreferenceId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": \"team\",\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_boolean_salaryPreferenceId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": false,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_null_visaStatusId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_inValid_visaStatusId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 406\", function () {\r",
+											"    pm.response.to.have.status(406);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_String_visaStatusId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": \"team\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_boolean_visaStatusId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        23\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_null_workPlaces",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 406\", function () {\r",
+											"    pm.response.to.have.status(406);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        null\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_inValid_workPlaces",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 406\", function () {\r",
+											"    pm.response.to.have.status(406);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        1\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_String_workPlaces",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        \"team\"\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "preference_boolean_workPlaces",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contractTypeId\": 19,\r\n  \"currencyId\": 15,\r\n  \"locations\": [\r\n    {\r\n      \"cityId\": 1,\r\n      \"workPlaces\": [\r\n        true\r\n      ]\r\n    }\r\n  ],\r\n  \"minExpectedAmount\": 2000,\r\n  \"salaryPreferenceId\": 5,\r\n  \"visaStatusId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURLRoles}}}/candidate/preferences/{{candidateId}}",
+									"host": [
+										"{{BaseURLRoles}}}"
+									],
+									"path": [
+										"candidate",
+										"preferences",
+										"{{candidateId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Take Register Token Here",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"userToken\", jsonData.data.token);",
+							"pm.environment.set(\"userId\", jsonData.data.id);",
+							"pm.environment.set(\"userEmail\", jsonData.data.email);",
+							"pm.environment.set(\"firstName\", jsonData.data.firstName);",
+							"",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"name\", \"{{$randomFirstName}}\");",
+							"pm.environment.set(\"name\",pm.variables.replaceIn(\"{{$randomFirstName}}\", \"{{name}}\"));"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"confirmPassword\": \"{{CommonPassword}}\",\r\n  \"email\": \"{{name}}@test.com\",\r\n  \"firstName\": \"{{name}}\",\r\n  \"gdpr\": true,\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"linkedIn\": \"{{linkedin}}{{name}}\",\r\n  \"password\": \"{{CommonPassword}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://54.194.180.243:9001/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"54",
+						"194",
+						"180",
+						"243"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Take Candidate Token Here",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"candidateToken\", jsonData.data.token);",
+							"pm.environment.set(\"candidateEmail\", jsonData.data.email);",
+							"",
+							"// this helps us to use the variable in Admin{candidateId} end-point under the position file ",
+							"pm.environment.set(\"candidateId\", jsonData.data.id);",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Bearer}}{{userToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURLRoles}}/user/candidate/create",
+					"host": [
+						"{{BaseURLRoles}}"
+					],
+					"path": [
+						"user",
+						"candidate",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All_LookUp_List",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Bearer}}{{candidateToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BaseURLRoles}}/lookUp/getAll",
+					"host": [
+						"{{BaseURLRoles}}"
+					],
+					"path": [
+						"lookUp",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
